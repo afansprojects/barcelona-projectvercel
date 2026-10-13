@@ -1,29 +1,38 @@
-import { CalendarDays, GraduationCap, MapPin, Ticket, Trophy } from 'lucide-react'
+import { CalendarDays, GraduationCap, Mail, MapPin, Trophy } from 'lucide-react'
+
+const JOIN_EMAIL = 'events@fcbarcelona.cat'
 
 export function Hero() {
   return (
-    <section id="top" className="px-6 pt-16 pb-12 md:pt-24">
-      <div className="mx-auto max-w-5xl rounded-3xl bg-primary px-8 py-16 text-primary-foreground md:px-14 md:py-24">
-        <p className="text-sm font-medium tracking-wide uppercase opacity-80">
+    <section
+      id="top"
+      className="relative overflow-hidden bg-navy px-6 py-20 text-white md:py-28"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-br from-primary/70 via-navy to-garnet/70"
+      />
+      <div className="relative mx-auto max-w-6xl">
+        <p className="inline-block rounded-full bg-gold px-4 py-1 font-display text-sm font-bold tracking-widest text-navy uppercase">
           Established in 1899
         </p>
-        <h1 className="mt-4 text-4xl font-bold tracking-tight text-balance md:text-6xl">
-          Welcome to F C Barcelona
+        <h1 className="mt-6 font-display text-6xl leading-none font-extrabold tracking-tight text-balance uppercase md:text-8xl">
+          F C Barcelona
         </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty opacity-90">
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-white/85">
           A Spanish football club participating in LaLiga, proud of the many
           talents produced by our own academy.
         </p>
         <div className="mt-10 flex flex-wrap gap-3">
           <a
-            href="#join"
-            className="rounded-full bg-primary-foreground px-6 py-3 font-semibold text-primary transition-opacity hover:opacity-90"
+            href={`mailto:${JOIN_EMAIL}`}
+            className="rounded-full bg-gold px-7 py-3 font-display text-lg font-bold tracking-wide text-navy uppercase transition-transform hover:-translate-y-0.5"
           >
             Book a visit
           </a>
           <a
             href="#about"
-            className="rounded-full border border-primary-foreground/40 px-6 py-3 font-semibold transition-colors hover:bg-primary-foreground/10"
+            className="rounded-full border-2 border-white/40 px-7 py-3 font-display text-lg font-bold tracking-wide uppercase transition-colors hover:bg-white/10"
           >
             Learn more
           </a>
@@ -43,19 +52,38 @@ const facts = [
   },
 ]
 
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="font-display text-4xl font-extrabold tracking-tight text-navy uppercase md:text-5xl">
+      {children}
+    </h2>
+  )
+}
+
 export function About() {
   return (
-    <section id="about" className="scroll-mt-20 px-6 py-16">
-      <div className="mx-auto max-w-5xl">
-        <h2 className="text-3xl font-bold tracking-tight md:text-4xl">What we do</h2>
+    <section id="about" className="scroll-mt-32 bg-white px-6 py-20">
+      <div className="mx-auto max-w-6xl">
+        <SectionTitle>What we do</SectionTitle>
         <ul className="mt-10 grid gap-6 md:grid-cols-3">
-          {facts.map(({ icon: Icon, title, text }) => (
-            <li key={title} className="rounded-2xl border bg-card p-6">
-              <span className="flex size-11 items-center justify-center rounded-xl bg-secondary text-secondary-foreground">
-                <Icon className="size-5" aria-hidden="true" />
+          {facts.map(({ icon: Icon, title, text }, i) => (
+            <li
+              key={title}
+              className={`rounded-2xl border-t-4 bg-secondary p-6 ${
+                i % 2 === 0 ? 'border-primary' : 'border-garnet'
+              }`}
+            >
+              <span
+                className={`flex size-12 items-center justify-center rounded-xl text-white ${
+                  i % 2 === 0 ? 'bg-primary' : 'bg-garnet'
+                }`}
+              >
+                <Icon className="size-6" aria-hidden="true" />
               </span>
-              <h3 className="mt-5 text-lg font-semibold">{title}</h3>
-              <p className="mt-2 leading-relaxed text-muted-foreground">{text}</p>
+              <h3 className="mt-5 font-display text-2xl font-bold text-navy uppercase">
+                {title}
+              </h3>
+              <p className="mt-2 leading-relaxed text-slate-600">{text}</p>
             </li>
           ))}
         </ul>
@@ -66,18 +94,19 @@ export function About() {
 
 export function Visit() {
   return (
-    <section id="visit" className="scroll-mt-20 px-6 py-16">
-      <div className="mx-auto flex max-w-5xl flex-col gap-6 rounded-3xl bg-secondary p-8 md:flex-row md:items-center md:p-12">
-        <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
-          <MapPin className="size-6" aria-hidden="true" />
+    <section id="visit" className="scroll-mt-32 bg-white px-6 pb-20">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-garnet p-8 text-white md:flex-row md:items-center md:p-12">
+        <span className="flex size-16 shrink-0 items-center justify-center rounded-2xl bg-gold text-navy">
+          <MapPin className="size-7" aria-hidden="true" />
         </span>
         <div>
-          <h2 className="text-3xl font-bold tracking-tight text-secondary-foreground md:text-4xl">
+          <h2 className="font-display text-4xl font-extrabold tracking-tight uppercase md:text-5xl">
             When and where we meet
           </h2>
-          <p className="mt-3 max-w-2xl text-lg leading-relaxed text-pretty">
-            Visit our newly renovated <strong>Spotify Camp Nou</strong> to meet
-            our team and experience our legacy.
+          <p className="mt-3 max-w-2xl text-lg leading-relaxed text-pretty text-white/90">
+            Visit our newly renovated{' '}
+            <strong className="text-gold">Spotify Camp Nou</strong> to meet our
+            team and experience our legacy.
           </p>
         </div>
       </div>
@@ -87,18 +116,24 @@ export function Visit() {
 
 export function Join() {
   return (
-    <section id="join" className="scroll-mt-20 px-6 py-16 md:pb-24">
-      <div className="mx-auto max-w-5xl rounded-3xl border p-8 text-center md:p-14">
-        <span className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-secondary text-secondary-foreground">
-          <Ticket className="size-6" aria-hidden="true" />
+    <section id="join" className="scroll-mt-32 bg-secondary px-6 py-20">
+      <div className="mx-auto max-w-3xl text-center">
+        <span className="mx-auto flex size-16 items-center justify-center rounded-2xl bg-garnet text-white">
+          <Mail className="size-7" aria-hidden="true" />
         </span>
-        <h2 className="mt-6 text-3xl font-bold tracking-tight md:text-4xl">How to join</h2>
-        <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty">
-          Book a visit through our official main support:
+        <div className="mt-6">
+          <SectionTitle>How to join</SectionTitle>
+        </div>
+        <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-pretty text-slate-600">
+          Book a visit through our official main support by email:
         </p>
-        <p className="mt-4 inline-block rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground">
-          supportfcbarcelona
-        </p>
+        <a
+          href={`mailto:${JOIN_EMAIL}`}
+          className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 font-display text-xl font-bold tracking-wide text-white transition-colors hover:bg-garnet"
+        >
+          <Mail className="size-5" aria-hidden="true" />
+          {JOIN_EMAIL}
+        </a>
       </div>
     </section>
   )
@@ -106,10 +141,15 @@ export function Join() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t px-6 py-8">
-      <p className="mx-auto max-w-5xl text-sm text-muted-foreground">
-        F C Barcelona &middot; Established in 1899
-      </p>
+    <footer className="bg-navy px-6 py-10 text-white/70">
+      <div className="mx-auto flex max-w-6xl flex-col gap-2 text-sm sm:flex-row sm:justify-between">
+        <p className="font-display text-base font-bold tracking-wide text-white uppercase">
+          F C Barcelona &middot; Established in 1899
+        </p>
+        <a href={`mailto:${JOIN_EMAIL}`} className="hover:text-gold">
+          {JOIN_EMAIL}
+        </a>
+      </div>
     </footer>
   )
 }
