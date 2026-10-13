@@ -17,8 +17,12 @@ export function Hero() {
           Established in 1899
         </p>
         <h1 className="mt-6 font-display text-6xl leading-none font-extrabold tracking-tight text-balance uppercase md:text-8xl">
-          F C Barcelona
-        </h1>
+  F C Barcelona
+  </h1>
+  <p className="mt-4 font-display text-2xl font-bold tracking-wide text-gold md:text-3xl">
+  Visca el Barça i visca Catalunya
+  </p>
+
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-white/85">
           A Spanish football club participating in LaLiga, proud of the many
           talents produced by our own academy.
